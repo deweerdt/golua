@@ -90,9 +90,9 @@ func (L *State) PushLightInteger(n int) {
 
 
 //push pointer by value, as a value - we don't impact lifetime
-func (L *State) PushLightUserdata(ud *interface{}) {
+func (L *State) PushLightUserdata(ud interface{}) {
 	//push
-	C.lua_pushlightuserdata(L.s,unsafe.Pointer(ud));
+	C.lua_pushlightuserdata(L.s,ud.(unsafe.Pointer));
 
 }
 /*
