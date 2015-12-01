@@ -287,6 +287,12 @@ func (L *State) PushBoolean(b bool) {
 	C.lua_pushboolean(L.s, C.int(bint))
 }
 
+func (L *State) PushLString(str string) {
+	Cstr := C.CString(str)
+	defer C.free(unsafe.Pointer(Cstr))
+	C.lua_pushlstring(L.s, Cstr, C.size_t(len(str)))
+}
+
 func (L *State) PushString(str string) {
 	Cstr := C.CString(str)
 	defer C.free(unsafe.Pointer(Cstr))
